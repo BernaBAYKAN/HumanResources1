@@ -1,19 +1,62 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 }
 
-group 'org.team3'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+allprojects{
+    apply plugin : 'java'
+    apply plugin : 'eclipse'
+    apply plugin : 'idea'
+    apply plugin : 'org.springframework.boot'
+    apply plugin : 'io.spring.dependency-management'
+    apply plugin : 'java-library'
+    apply from: "${rootDir}/dependencies.gradle"
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+subprojects{
+    group 'com.team3'
+    version 'v.0.1'
+    sourceCompatibility = JavaVersion.VERSION_18
+    targetCompatibility = JavaVersion.VERSION_18
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 }
 
-test {
-    useJUnitPlatform()
+allprojects{
+    repositories {
+        mavenCentral()
+    }
+
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    dependencies {
+        implementation libs.springBoot
+        implementation libs.springBootWeb
+        implementation libs.springBootActuator
+        implementation libs.springValidation
+        developmentOnly libs.springBootDevtools
+        implementation libs.mapstruct
+        annotationProcessor libs.mapstructProcessor
+        annotationProcessor libs.lombokMapstructBinding
+        implementation libs.lombok
+        annotationProcessor libs.lombok
+        implementation libs.openApi
+        implementation libs.springOpenFeign
+        implementation libs.javaJWT
+        implementation libs.springCloudSleuthZipkin
+        implementation libs.springCloudStarterSleuth
+
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
