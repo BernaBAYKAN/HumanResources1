@@ -24,6 +24,7 @@ public class Admin {
     String lastName;
     @Column(name = "second_name")
     String secondName;
+    @Column(name = "second_name")    String secondName;
     @Column(name = "second_last_name")
     String secondLastname;
     @Enumerated(EnumType.STRING)
