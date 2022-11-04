@@ -6,6 +6,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/HumanResources
     username: postgres
     password: root514
+
   jpa:
     hibernate:
       ddl-auto: update
