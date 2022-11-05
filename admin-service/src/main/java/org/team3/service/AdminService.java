@@ -3,6 +3,7 @@ package org.team3.service;
 import org.springframework.stereotype.Service;
 import org.team3.dto.request.AdminProfileRequestDto;
 import org.team3.dto.request.EditProfileRequestDto;
+import org.team3.mapper.IAdminMapper;
 import org.team3.repository.IAdminRepository;
 import org.team3.repository.entity.Admin;
 import org.team3.utility.ServiceManager;
@@ -17,7 +18,7 @@ public class AdminService extends ServiceManager<Admin,Long> {
         super(repository);
         this.repository = repository;
     }
-    public void save(AdminProfileRequestDto dto){
+   /* public void save(AdminProfileRequestDto dto){
         repository.save(Admin.builder()
                 .name(dto.getName())
                 .lastName(dto.getLastName())
@@ -33,9 +34,14 @@ public class AdminService extends ServiceManager<Admin,Long> {
                 .mail(dto.getMail())
                 .build());
 
+    } */
+
+    public Admin save(AdminProfileRequestDto dto){
+        return repository.save(IAdminMapper.INSTANCE.toAdminProfile(dto));
     }
+
     public Boolean updateAdmin(EditProfileRequestDto dto, Long adminid){
-        Admin admin = IUserProfileMapper.INSTANCE.toUserProfile(dto);
+        Admin admin = IAdminMapper.INSTANCE.toAdmin(dto);
         Optional<Admin> optionalAdmin = repository.findOptionalById(adminid);
         if(optionalAdmin.isEmpty()) return false;
         try{
