@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.team3.repository.enums.Gender;
+import org.team3.repository.enums.Role;
 
 import javax.persistence.*;
 
@@ -24,7 +26,6 @@ public class Admin {
     String lastName;
     @Column(name = "second_name")
     String secondName;
-    @Column(name = "second_name")    String secondName;
     @Column(name = "second_last_name")
     String secondLastname;
     @Enumerated(EnumType.STRING)
@@ -37,6 +38,7 @@ public class Admin {
     @Column(name = "phone_number")
     String phoneNumber;
     String mail;
-
+    @Enumerated(EnumType.STRING)
+    Role role = Role.ADMIN;
 
 }
