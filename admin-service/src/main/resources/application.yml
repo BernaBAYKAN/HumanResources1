@@ -1,12 +1,12 @@
 server:
-  port: 9090
+  port: 8081
+
 spring:
   datasource:
+    url: 'jdbc:postgresql://localhost:5432/HumanResources'
+    username: 'postgres'
+    password: 'Nic3993.'
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/HumanResources
-    username: postgres
-    password: Nic3993.
-
   jpa:
     hibernate:
       ddl-auto: update

@@ -10,7 +10,7 @@ import org.team3.repository.enums.Gender;
 @Data
 @Builder
 public class AdminProfileRequestDto {
- Long id;
+
  String photo;
  String name;
  String lastName;
