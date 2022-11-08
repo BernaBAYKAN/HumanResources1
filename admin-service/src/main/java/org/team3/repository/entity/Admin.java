@@ -39,6 +39,7 @@ public class Admin {
     String phoneNumber;
     String mail;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     Role role = Role.ADMIN;
 
 }

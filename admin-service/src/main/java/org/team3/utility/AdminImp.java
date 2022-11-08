@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.team3.repository.entity.Admin;
 import org.team3.repository.enums.Gender;
+import org.team3.repository.enums.Role;
 import org.team3.service.AdminService;
 
 import javax.annotation.PostConstruct;
@@ -30,6 +31,7 @@ public class AdminImp {
                     .address("Angara")
                     .phoneNumber("0534 327 2928")
                     .mail("berna@gmail.com")
+                    .role(Role.ADMIN)
             .build());
 
     }

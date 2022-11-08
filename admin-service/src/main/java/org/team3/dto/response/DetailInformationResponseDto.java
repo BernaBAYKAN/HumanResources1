@@ -29,6 +29,6 @@ public class DetailInformationResponseDto {
     String address;
     String phoneNumber;
     String mail;
-
+    Role role;
 
 }
