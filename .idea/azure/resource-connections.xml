@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="connections">
+    <connection type="Azure.PostgreSQL:Jetbrains.IJModule" envPrefix="AZURE_POSTGRESQL">
+      <resource type="Azure.PostgreSQL">4f8a6d1fcfe11f09644a108dee376e93</resource>
+      <consumer type="Jetbrains.IJModule">human_resources</consumer>
+    </connection>
+  </component>
+</project>
