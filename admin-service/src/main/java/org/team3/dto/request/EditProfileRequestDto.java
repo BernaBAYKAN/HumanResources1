@@ -12,9 +12,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class EditProfileRequestDto {
 
-    @NotNull
-    String token;
-    String phone;
+    String phoneNumber;
     String photo;
     String address;
 }

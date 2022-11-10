@@ -3,9 +3,11 @@ package org.team3.service;
 import org.springframework.stereotype.Service;
 import org.team3.dto.request.AdminProfileRequestDto;
 import org.team3.dto.request.EditProfileRequestDto;
+import org.team3.dto.response.DetailInformationResponseDto;
 import org.team3.mapper.IAdminMapper;
 import org.team3.repository.IAdminRepository;
 import org.team3.repository.entity.Admin;
+import org.team3.repository.enums.Role;
 import org.team3.utility.ServiceManager;
 
 import java.util.Optional;
@@ -18,38 +20,50 @@ public class AdminService extends ServiceManager<Admin,Long> {
         super(repository);
         this.repository = repository;
     }
-   /* public void save(AdminProfileRequestDto dto){
-        repository.save(Admin.builder()
-                .name(dto.getName())
-                .lastName(dto.getLastName())
-                .secondLastname(dto.getSecondLastName())
-                .gender(dto.getGender())
-                .phoneNumber(dto.getPhoneNumber())
-                .address(dto.getAddress())
-                .department(dto.getDepartment())
-                .photo(dto.getPhoto())
-                .birthdate(dto.getBirthdate())
-                .workStartDate(dto.getWorkStartDate())
-                .secondName(dto.getSecondName())
-                .mail(dto.getMail())
-                .build());
 
-    } */
 
-    public Admin save(AdminProfileRequestDto dto){
-        return repository.save(IAdminMapper.INSTANCE.toAdminProfile(dto));
+    public void save(AdminProfileRequestDto dto){
+        repository.save(IAdminMapper.INSTANCE.toAdminProfile(dto));
     }
 
     public Boolean updateAdmin(EditProfileRequestDto dto, Long adminid){
-        Admin admin = IAdminMapper.INSTANCE.toAdmin(dto);
+
         Optional<Admin> optionalAdmin = repository.findOptionalById(adminid);
         if(optionalAdmin.isEmpty()) return false;
-        try{
-            admin.setId(optionalAdmin.get().getId());
-            update(admin);
-            return true;
-        }catch (Exception e){
-            return false;
+        else {
+            try {
+                Admin admin = Admin.builder()
+                        .id(optionalAdmin.get().getId())
+                        .photo(dto.getPhoto())
+                        .name(optionalAdmin.get().getName())
+                        .lastName(optionalAdmin.get().getLastName())
+                        .secondName(optionalAdmin.get().getSecondName())
+                        .secondLastname(optionalAdmin.get().getSecondLastname())
+                        .gender(optionalAdmin.get().getGender())
+                        .department(optionalAdmin.get().getDepartment())
+                        .birthdate(optionalAdmin.get().getBirthdate())
+                        .workStartDate(optionalAdmin.get().getWorkStartDate())
+                        .phoneNumber(dto.getPhoneNumber())
+                        .address(dto.getAddress())
+                        .mail(optionalAdmin.get().getMail())
+                        .role(optionalAdmin.get().getRole())
+                        .build();
+                save(admin);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         }
+    }
+    public Admin findByRole(Role role){
+        Admin admin = repository.findByRole(role);
+
+        return admin;
+    }
+
+    public DetailInformationResponseDto profileDetail() {
+        Admin admin = findByRole(Role.ADMIN);
+        DetailInformationResponseDto dto = IAdminMapper.INSTANCE.toDetailInformationResponseDto(admin);
+        return dto;
     }
 }
