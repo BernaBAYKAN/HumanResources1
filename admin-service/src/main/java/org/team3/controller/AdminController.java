@@ -23,7 +23,7 @@ public class AdminController {
     private final AdminService adminService;
 
 
-
+    @CrossOrigin(originPatterns = "*")
     @PostMapping(PROFILE_DETAIL)
     public ResponseEntity<DetailInformationResponseDto> profileDetail(){
 
