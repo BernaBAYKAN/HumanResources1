@@ -3,6 +3,7 @@ package org.team3.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.team3.dto.request.EditProfileRequestDto;
 import org.team3.dto.response.DetailInformationResponseDto;
@@ -25,12 +26,13 @@ public class AdminController {
 
     @CrossOrigin(originPatterns = "*")
     @PostMapping(PROFILE_DETAIL)
+    @PreAuthorize("hasAuthority(Role.ADMIN)")
     public ResponseEntity<DetailInformationResponseDto> profileDetail(){
 
         DetailInformationResponseDto dto = adminService.profileDetail();
 
         return ResponseEntity.ok(dto)   ;
-    }
+    }@PreAuthorize("hasAuthority('ADMIN')")
    @CrossOrigin(originPatterns = "*")
    @PostMapping(UPDATE)
    public ResponseEntity<Boolean> updateProfile(@RequestBody @Valid EditProfileRequestDto dto){
@@ -41,4 +43,6 @@ public class AdminController {
            throw new AdminManagerException(ErrorType.INVALID_TOKEN);
        }
    }
+
+
 }

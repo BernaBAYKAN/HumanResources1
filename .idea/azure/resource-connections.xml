@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="connections">
+    <connection type="Azure.PostgreSQL:Jetbrains.IJModule" envPrefix="AZURE_POSTGRESQL">
+      <resource type="Azure.PostgreSQL">e2dd67e3f36d145560b705b764ffe335</resource>
+      <consumer type="Jetbrains.IJModule">human_resources</consumer>
+    </connection>
+    <connection type="Azure.Storage:Jetbrains.IJModule" envPrefix="AZURE_STORAGE">
+      <resource type="Azure.Storage">7f67d8218d8d6df0b72caff49307e965</resource>
+      <consumer type="Jetbrains.IJModule">human_resources</consumer>
+    </connection>
+    <connection type="Azure.PostgreSQL:Jetbrains.IJModule" envPrefix="AZURE_POSTGRESQL">
+      <resource type="Azure.PostgreSQL">e2dd67e3f36d145560b705b764ffe335</resource>
+      <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
+    </connection>
+    <connection type="Azure.Storage:Jetbrains.IJModule" envPrefix="AZURE_STORAGE">
+      <resource type="Azure.Storage">7f67d8218d8d6df0b72caff49307e965</resource>
+      <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
+    </connection>
+  </component>
+</project>

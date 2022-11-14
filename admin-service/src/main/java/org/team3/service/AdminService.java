@@ -1,7 +1,9 @@
 package org.team3.service;
 
 import org.springframework.stereotype.Service;
+import org.team3.config.security.JwtTokenManager;
 import org.team3.dto.request.AdminProfileRequestDto;
+import org.team3.dto.request.DoLoginRequestDto;
 import org.team3.dto.request.EditProfileRequestDto;
 import org.team3.dto.response.DetailInformationResponseDto;
 import org.team3.mapper.IAdminMapper;
@@ -15,10 +17,12 @@ import java.util.Optional;
 @Service
 public class AdminService extends ServiceManager<Admin,Long> {
     private final IAdminRepository repository;
+    private final JwtTokenManager jwtTokenManager;
 
-    public AdminService(IAdminRepository repository) {
+    public AdminService(IAdminRepository repository, JwtTokenManager jwtTokenManager) {
         super(repository);
         this.repository = repository;
+        this.jwtTokenManager = jwtTokenManager;
     }
 
 
@@ -65,5 +69,11 @@ public class AdminService extends ServiceManager<Admin,Long> {
         Admin admin = findByRole(Role.ADMIN);
         DetailInformationResponseDto dto = IAdminMapper.INSTANCE.toDetailInformationResponseDto(admin);
         return dto;
+    }
+
+    public Optional<Admin> doLogin(DoLoginRequestDto dto){
+        String encodedPassword = jwtTokenManager.encryptPassword(dto.getPassword());
+        return repository.findOptionalByUsernameIgnoreCaseAndPassword(dto.getMail(),
+                encodedPassword);
     }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "company_table")
 @Entity
@@ -17,6 +18,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(name = "company_name")
     String companyName;
     String title;
     String taxNo;
@@ -27,6 +29,8 @@ public class Company {
     String mail;
     String logo;
     String foundingDate;
+    @OneToMany(mappedBy = "company")
+    List<CompanyManager> companyManagerList;
 
 
 }
