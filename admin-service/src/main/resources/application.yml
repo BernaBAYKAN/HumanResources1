@@ -1,11 +1,19 @@
 server:
   port: 8081
 
+
+#spring:
+#  datasource:
+#    url: 'jdbc:postgresql://localhost:5432/HumanResources'
+#    username: 'postgres'
+#    password: 'Nic3993.'
+#    driver-class-name: org.postgresql.Driver
+
 spring:
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/HumanResources'
-    username: 'postgres'
-    password: 'Nic3993.'
+    url: 'jdbc:postgresql://humanresourcest3.postgres.database.azure.com:5432/azure_sys?useSSL=true&requireSSL=false'
+    username: 'team3@humanresourcest3'
+    password: '10101010kk..'
     driver-class-name: org.postgresql.Driver
 
 
