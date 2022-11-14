@@ -7,6 +7,14 @@ spring:
     username: 'postgres'
     password: 'Nic3993.'
     driver-class-name: org.postgresql.Driver
+
+
+#spring:
+#  datasource:
+#    url: 'jdbc:postgresql://postgresql-20221113151517.postgres.database.azure.com:5432/postgres'
+#    username: 'postgres@postgresql-20221113151517'
+#    password: '10101010kk..'
+#    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update

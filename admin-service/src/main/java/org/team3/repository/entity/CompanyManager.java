@@ -4,43 +4,38 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-import org.team3.repository.enums.Gender;
 import org.team3.repository.enums.Role;
 
 import javax.persistence.*;
 
-@Table(name = "admin_table")
+@Table(name = "company_manager_table")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class Admin {
+public class CompanyManager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String photo;
     String name;
-    @Column(name = "last_name")
     String lastName;
-    @Column(name = "second_name")
     String secondName;
-    @Column(name = "second_last_name")
     String secondLastname;
-    @Enumerated(EnumType.STRING)
-    Gender gender;
-    String department;
     String birthdate;
-    @Column(name = "work_start_date")
-    String workStartDate;
     String address;
-    @Column(name = "phone_number")
-    String phoneNumber;
+    String phone;
     String mail;
     String password;
+    String workStartDate;
+    @ManyToOne
+    @JoinColumn(name = "company",referencedColumnName = "company_name")
+    Company company;
+
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    Role role = Role.ADMIN;
+    Role role = Role.USER;
+
 
 }

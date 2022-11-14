@@ -13,4 +13,5 @@ public interface IAdminRepository extends JpaRepository<Admin,Long> {
 
     Optional<Admin> findOptionalById(Long adminid);
     Admin findByRole(Role role);
+    Optional<Admin> findOptionalByUsernameIgnoreCaseAndPassword(String username, String password);
 }

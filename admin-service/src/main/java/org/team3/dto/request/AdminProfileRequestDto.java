@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.team3.repository.enums.Gender;
+
+import javax.validation.constraints.Email;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -22,6 +25,7 @@ public class AdminProfileRequestDto {
  String workStartDate;
  String address;
  String phoneNumber;
+ @Email(message = "Email formatı uygun değil")
  String mail;
 
 }
