@@ -17,5 +17,9 @@
       <resource type="Azure.Storage">7f67d8218d8d6df0b72caff49307e965</resource>
       <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
     </connection>
+    <connection type="Azure.Insights:Jetbrains.IJModule" envPrefix="AZURE_INS_GHTS">
+      <resource type="Azure.Insights">caf0189db9b60653d19e581e2bf11d75</resource>
+      <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
+    </connection>
   </component>
 </project>

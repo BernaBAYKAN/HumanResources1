@@ -2,23 +2,20 @@ package org.team3.utility;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.team3.repository.entity.Admin;
+import org.team3.repository.entity.User;
 import org.team3.repository.enums.Gender;
-import org.team3.repository.enums.Role;
-import org.team3.service.AdminService;
-
-import javax.annotation.PostConstruct;
+import org.team3.service.UserService;
 
 
 @Component
 @RequiredArgsConstructor
 public class AdminImp {
-    private final AdminService adminService;
+    private final UserService userService;
 
     //@PostConstruct
     public void init() {
 
-    adminService.save(Admin.builder()
+    userService.save(User.builder()
                     .photo("photo")
                     .name("Berna")
                     .secondName("Mehmet")
@@ -31,7 +28,7 @@ public class AdminImp {
                     .address("Angara")
                     .phoneNumber("0534 327 2928")
                     .mail("berna@gmail.com")
-                    .role(Role.ADMIN)
+
             .build());
 
     }

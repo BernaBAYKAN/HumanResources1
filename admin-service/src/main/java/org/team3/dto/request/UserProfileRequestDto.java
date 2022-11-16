@@ -12,7 +12,7 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 @Data
 @Builder
-public class AdminProfileRequestDto {
+public class UserProfileRequestDto {
 
  String photo;
  String name;

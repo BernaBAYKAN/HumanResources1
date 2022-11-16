@@ -2,11 +2,9 @@ package org.team3.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.team3.dto.request.NewCompanyRequestDto;
 import org.team3.dto.response.AllCompanyDtoResponse;
-import org.team3.mapper.IAdminMapper;
 import org.team3.mapper.ICompanyMapper;
 import org.team3.repository.entity.Company;
 import org.team3.service.CompanyService;

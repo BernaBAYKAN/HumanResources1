@@ -5,7 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.springframework.data.annotation.Transient;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "company_table")
@@ -14,10 +17,12 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class Company {
+public class Company implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "company_id")
     Long id;
+
     @Column(name = "company_name")
     String companyName;
     String title;
@@ -29,8 +34,8 @@ public class Company {
     String mail;
     String logo;
     String foundingDate;
-    @OneToMany(mappedBy = "company")
-    List<CompanyManager> companyManagerList;
+
+
 
 
 }
