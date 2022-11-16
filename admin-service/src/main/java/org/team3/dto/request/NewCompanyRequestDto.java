@@ -49,5 +49,4 @@ public class NewCompanyRequestDto {
     @Size(min = 3, max = 20)
     String foundingDate;
 
-    List<CompanyManager> companyManagerList;
 }

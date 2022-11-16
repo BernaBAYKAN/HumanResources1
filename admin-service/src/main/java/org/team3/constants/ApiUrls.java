@@ -7,7 +7,7 @@ public class ApiUrls {
     public static final String ADMIN = "/admin";
     public static final String LOGIN = "/login";
     public static final String COMPANY = "/company";
-    public static final String COMPANY_MANAGER = "/companymanager";
+    public static final String USER = "/user";
     public static final String SAVE = "/save";
     public static final String UPDATE = "/update";
     public static final String FINDALL = "/findall";

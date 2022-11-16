@@ -4,28 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.team3.repository.enums.Role;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-
-@Table(name = "company_manager_table")
+@Table(name = "user_role")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class CompanyManager implements Serializable {
-
+public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @OneToOne
-    @JoinColumn(name = "company_id" , referencedColumnName = "company_id")
-    Company company;
-    @OneToOne
-    @JoinColumn(name = "user_id" ,referencedColumnName = "id")
-    User user;
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    User userId;
+
+    @Enumerated(EnumType.STRING)
+    Role role;
 
 }
