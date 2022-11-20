@@ -19,13 +19,10 @@ public class UserProfileRequestDto {
  String lastName;
  String secondLastName;
  String secondName;
- Gender gender;
- String department;
  String birthdate;
  String workStartDate;
  String address;
  String phoneNumber;
- @Email(message = "Email formatı uygun değil")
- String mail;
+
 
 }

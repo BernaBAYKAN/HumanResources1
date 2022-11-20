@@ -1,21 +1,21 @@
 server:
-  port: 8081
-
+  port: ${admin_port}
 
 spring:
-  datasource:
-    url: 'jdbc:postgresql://localhost:5432/HumanResources'
-    username: 'postgres'
-    password: 'Nic3993.'
-    driver-class-name: org.postgresql.Driver
+
+#  datasource:
+#    url: 'jdbc:postgresql://localhost:5432/HumanResources'
+#    username: 'postgres'
+#    password: 'Nic3993.'
+#    driver-class-name: org.postgresql.Driver
 
 
 #spring:
-#  datasource:
-#    url: 'jdbc:postgresql://postgresql-20221113151517.postgres.database.azure.com:5432/postgres'
-#    username: 'postgres@postgresql-20221113151517'
-#    password: '10101010kk..'
-#    driver-class-name: org.postgresql.Driver
+  datasource:
+    url: ${db_postgresql_url}
+    username: ${db_postgresql_username}
+    password: ${db_postgresql_password}
+    driver-class-name: org.postgresql.Driver
 
   mail:
     host: smtp-mail.outlook.com
@@ -38,3 +38,5 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+

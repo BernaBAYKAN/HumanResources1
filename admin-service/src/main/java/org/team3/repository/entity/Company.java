@@ -35,7 +35,9 @@ public class Company implements Serializable {
     String logo;
     String foundingDate;
 
-
+    //String domain;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    List<CompanyManager> companyManagerList;
 
 
 }

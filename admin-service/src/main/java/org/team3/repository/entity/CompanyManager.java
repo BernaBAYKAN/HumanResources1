@@ -21,11 +21,12 @@ public class CompanyManager implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @OneToOne
-    @JoinColumn(name = "company_id" , referencedColumnName = "company_id")
+    @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     Company company;
-    @OneToOne
-    @JoinColumn(name = "user_id" ,referencedColumnName = "id")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     User user;
 
 }

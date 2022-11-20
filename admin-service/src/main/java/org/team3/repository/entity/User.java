@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.team3.repository.enums.Gender;
 import org.springframework.data.annotation.Transient;
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     Long id;
     String photo;
     String name;
@@ -47,8 +49,9 @@ public class User implements Serializable {
     //@Column(columnDefinition = "TIMESTAMP")
     @Transient
     private LocalDateTime tokenCreationDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role" ,referencedColumnName = "role")
     UserRole userRole;
-
+    @OneToOne(mappedBy = "user")
+    CompanyManager companyManager;
 }

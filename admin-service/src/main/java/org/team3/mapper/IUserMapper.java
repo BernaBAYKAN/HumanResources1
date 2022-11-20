@@ -15,7 +15,7 @@ public interface IUserMapper {
 
     IUserMapper INSTANCE = Mappers.getMapper(IUserMapper.class);
 
-    User toCompanyManager(UserProfileRequestDto dto);
+
 
     DetailInformationResponseDto toDetail(User user);
 

@@ -2,16 +2,18 @@ package org.team3.service;
 
 import org.springframework.stereotype.Service;
 import org.team3.config.security.JwtTokenManager;
-import org.team3.dto.request.DetailInformationRequestDto;
-import org.team3.dto.request.UserProfileRequestDto;
-import org.team3.dto.request.DoLoginRequestDto;
-import org.team3.dto.request.EditProfileRequestDto;
+import org.team3.dto.request.*;
+import org.team3.dto.response.CompanyManagerResponseDto;
 import org.team3.dto.response.DetailInformationResponseDto;
 import org.team3.exception.ErrorType;
 import org.team3.exception.UserManagerException;
 import org.team3.mapper.IUserMapper;
 import org.team3.repository.IUserRepository;
+import org.team3.repository.entity.Company;
+import org.team3.repository.entity.CompanyManager;
 import org.team3.repository.entity.User;
+import org.team3.repository.entity.UserRole;
+import org.team3.repository.enums.Role;
 import org.team3.utility.ServiceManager;
 
 import java.time.Duration;
@@ -22,14 +24,25 @@ import java.util.UUID;
 @Service
 public class UserService extends ServiceManager<User,Long> {
     private final IUserRepository userRepository;
-    
+    private final CompanyService companyService;
+    private final CompanyManagerService companyManagerService;
+
+    private final UserRoleService userRoleService;
+
+
     private static final long EXPIRE_TOKEN_AFTER_MINUTES = 30;
     private final JwtTokenManager jwtTokenManager;
 
-    public UserService(IUserRepository userRepository, JwtTokenManager jwtTokenManager) {
+    public UserService(IUserRepository userRepository, JwtTokenManager jwtTokenManager,
+                       CompanyService companyService,CompanyManagerService companyManagerService,
+                       UserRoleService userRoleService) {
         super(userRepository);
         this.userRepository = userRepository;
         this.jwtTokenManager = jwtTokenManager;
+        this.companyService = companyService;
+        this.companyManagerService = companyManagerService;
+        this.userRoleService = userRoleService;
+
     }
 
 
@@ -89,9 +102,39 @@ public class UserService extends ServiceManager<User,Long> {
         return userRepository.findOptionalByMailIgnoreCaseAndPassword(dto.getMail(),
                 encodedPassword);
     }
-    public void saveNewCompanyManager(UserProfileRequestDto dto) {
-        User user = IUserMapper.INSTANCE.toCompanyManager(dto);
+    public User saveNewCompanyManager(NewCompanyManagerDto dto) {
+        User user = User.builder()
+                    .photo(dto.getPhoto())
+                    .name(dto.getName())
+                    .lastName(dto.getLastName())
+                    .secondLastname(dto.getSecondLastname())
+                    .secondName(dto.getSecondName())
+                    .birthdate(dto.getBirthdate())
+                    .gender(dto.getGender())
+                    .workStartDate(dto.getWorkStartDate())
+                    .address(dto.getAddress())
+                    .phoneNumber(dto.getPhoneNumber())
+                    .build();
+        UserRole userRole = UserRole.builder()
+                .userId(user)
+                .role(Role.MANAGER)
+                .build();
+
+        user.setUserRole(userRole);
+
+        Company company = companyService.findById(dto.getCompanyId());
+        CompanyManager companyManager = CompanyManager.builder()
+                                        .company(company)
+                                        .user(user)
+                                        .build();
+        String companyMail = company.getMail();
+        String[] companyMailArray = companyMail.split("@");
+        user.setMail(user.getName() + "." + user.getLastName() + "@" + companyMailArray[1]);
         save(user);
+        companyManagerService.save(companyManager);
+        userRoleService.save(userRole);
+
+        return user;
     }
     public String forgotPassword(String email) {
 

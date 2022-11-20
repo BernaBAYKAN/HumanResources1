@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.team3.repository.entity.User;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class AllCompanyDtoResponse {
+public class CompanyManagerResponseDto {
 
 
-    String companyName;
-    String phone;
-    String mail; //todo domain yazılacak
-    String logo;
-
+    Long companyId;
+    List<User> userList;
 }

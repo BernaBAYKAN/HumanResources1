@@ -29,6 +29,7 @@ public class CompanyService extends ServiceManager<Company,Long> {
 
     public void saveNewCompany(NewCompanyRequestDto dto) {
         Company company = ICompanyMapper.INSTANCE.toCompany(dto);
+        //todo domain i burada belirteceğiz
         save(company);
     }
 }
