@@ -1,6 +1,8 @@
 server:
-  port: 8081
+  port: ${admin_port}
 
+#server:
+#  port: 8081
 
 #spring:
 #  datasource:
@@ -9,12 +11,28 @@ server:
 #    password: 'Nic3993.'
 #    driver-class-name: org.postgresql.Driver
 
+
 spring:
   datasource:
-    url: 'jdbc:postgresql://humanresourcest3.postgres.database.azure.com:5432/azure_sys?useSSL=true&requireSSL=false'
-    username: 'team3@humanresourcest3'
-    password: '10101010kk..'
+    url: ${db_postgresql_url}
+    username: ${db_postgresql_username}
+    password: ${db_postgresql_password}
     driver-class-name: org.postgresql.Driver
+
+  mail:
+    host: smtp-mail.outlook.com
+    port: 587
+    username: 'team3-hrproject@outlook.com'
+    password: '10101010Kk..'
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,3 +40,5 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+

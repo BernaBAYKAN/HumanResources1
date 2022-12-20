@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admindeployment
+  labels:
+    team: hrteam3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-service    
+  template:
+    metadata:
+      labels:
+        app: admin-service
+    spec:
+      containers:        
+        - image: mehmethasancifci/adminservice:v105
+          name:  podadmin
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "0.1"
+            limits:
+              memory: "2Gi"
+              cpu: "0.25"
+          ports:
+            - containerPort: 8081      
+          env:
+            - name: admin_port
+              valueFrom:
+                secretKeyRef:
+                  name: hrsecret
+                  key: admin_port
+            - name: db_postgresql_username
+              valueFrom:
+                secretKeyRef:
+                  name: hrsecret
+                  key: db_postgresql_username
+            - name: db_postgresql_password
+              valueFrom:
+                secretKeyRef:
+                  name: hrsecret
+                  key: db_postgresql_password
+            - name: db_postgresql_url
+              valueFrom:
+                secretKeyRef:
+                  name: hrsecret
+                  key: db_postgresql_url
+            - name: admin_url
+              valueFrom:
+                secretKeyRef:
+                  name: hrsecret
+                  key: admin_url
+          
+            
+            

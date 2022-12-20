@@ -9,12 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class AllCompanyDtoResponse {
-
-
-    String companyName;
-    String phone;
-    String mail; //todo domain yazılacak
-    String logo;
-
+public class DoLoginResponseDto {
+    String token;
+    Long responsecode;
+    String message;
 }

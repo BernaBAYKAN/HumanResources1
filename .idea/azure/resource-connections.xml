@@ -2,8 +2,24 @@
 <project version="4">
   <component name="connections">
     <connection type="Azure.PostgreSQL:Jetbrains.IJModule" envPrefix="AZURE_POSTGRESQL">
-      <resource type="Azure.PostgreSQL">4f8a6d1fcfe11f09644a108dee376e93</resource>
+      <resource type="Azure.PostgreSQL">e2dd67e3f36d145560b705b764ffe335</resource>
       <consumer type="Jetbrains.IJModule">human_resources</consumer>
+    </connection>
+    <connection type="Azure.Storage:Jetbrains.IJModule" envPrefix="AZURE_STORAGE">
+      <resource type="Azure.Storage">7f67d8218d8d6df0b72caff49307e965</resource>
+      <consumer type="Jetbrains.IJModule">human_resources</consumer>
+    </connection>
+    <connection type="Azure.PostgreSQL:Jetbrains.IJModule" envPrefix="AZURE_POSTGRESQL">
+      <resource type="Azure.PostgreSQL">e2dd67e3f36d145560b705b764ffe335</resource>
+      <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
+    </connection>
+    <connection type="Azure.Storage:Jetbrains.IJModule" envPrefix="AZURE_STORAGE">
+      <resource type="Azure.Storage">7f67d8218d8d6df0b72caff49307e965</resource>
+      <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
+    </connection>
+    <connection type="Azure.Insights:Jetbrains.IJModule" envPrefix="AZURE_INS_GHTS">
+      <resource type="Azure.Insights">caf0189db9b60653d19e581e2bf11d75</resource>
+      <consumer type="Jetbrains.IJModule">human_resources.admin-service</consumer>
     </connection>
   </component>
 </project>

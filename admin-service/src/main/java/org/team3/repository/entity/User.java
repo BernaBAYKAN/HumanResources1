@@ -4,21 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+import org.springframework.stereotype.Component;
 import org.team3.repository.enums.Gender;
-import org.team3.repository.enums.Role;
-
+import org.springframework.data.annotation.Transient;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Table(name = "admin_table")
+@Table(name = "user_table")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class Admin {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     Long id;
     String photo;
     String name;
@@ -37,9 +39,19 @@ public class Admin {
     String address;
     @Column(name = "phone_number")
     String phoneNumber;
+    @Column(unique = true)
     String mail;
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    Role role = Role.ADMIN;
+    String password;
 
+    @Transient
+    String token;
+
+    //@Column(columnDefinition = "TIMESTAMP")
+    @Transient
+    private LocalDateTime tokenCreationDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role" ,referencedColumnName = "role")
+    UserRole userRole;
+    @OneToOne(mappedBy = "user")
+    CompanyManager companyManager;
 }

@@ -1,35 +1,28 @@
-package org.team3.dto.response;
+package org.team3.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.team3.repository.entity.UserRole;
 import org.team3.repository.enums.Gender;
-import org.team3.repository.enums.Role;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class DetailInformationResponseDto {
+public class    NewCompanyManagerDto {
 
+    Long companyId;
     String photo;
     String name;
     String lastName;
-    String secondName;
     String secondLastname;
-    Gender gender;
-    String department;
+    String secondName;
     String birthdate;
     String workStartDate;
     String address;
     String phoneNumber;
-    String mail;
-    UserRole role;
+    Gender gender;
 
 }

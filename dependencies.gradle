@@ -50,6 +50,6 @@ ext {
             lombokMapstructBinding                 : "org.projectlombok:lombok-mapstruct-binding:0.2.0",
             openApi                                : "org.springdoc:springdoc-openapi-ui:$versions.openApi",
             javaJWT                                : "com.auth0:java-jwt:$versions.auth0",
-
+            mailSender                             : "org.springframework.boot:spring-boot-starter-mail"
     ]
 }
