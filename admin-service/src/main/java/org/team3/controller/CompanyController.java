@@ -1,6 +1,8 @@
 package org.team3.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.team3.dto.request.NewCompanyRequestDto;
@@ -35,9 +37,8 @@ public class CompanyController {
      *Bütün şirketleri listelemek için kullanacağımız endpoint
      */
     @CrossOrigin(originPatterns = "*")
-    @PostMapping(FINDALL)
+    @GetMapping(FINDALL)
     public ResponseEntity<List<AllCompanyDtoResponse>> findAllCompanyList(){
-
         List<Company> companyList = companyService.findAll();
         List<AllCompanyDtoResponse> responseList= new ArrayList<>();
         companyList.forEach(company -> {

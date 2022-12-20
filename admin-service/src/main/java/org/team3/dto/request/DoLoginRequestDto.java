@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @Builder
 public class DoLoginRequestDto {
     @NotNull(message = "Boş bırakılamaz")
-    @Size(min = 3, max = 20, message = "Kullanıcı adı en az 3 karakter ve en fazla 20 karakter olabilir")
+    @Size(min = 3)
     @Email(message = "Email formatı uygun değil")
     String mail;
     @NotNull(message = "Boş bırakılamaz")

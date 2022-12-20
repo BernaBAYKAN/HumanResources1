@@ -6,13 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.team3.repository.enums.Gender;
 
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class NewCompanyManagerDto {
+public class    NewCompanyManagerDto {
 
     Long companyId;
     String photo;
@@ -25,5 +24,5 @@ public class NewCompanyManagerDto {
     String address;
     String phoneNumber;
     Gender gender;
-    //UserProfileRequestDto managerId;
+
 }

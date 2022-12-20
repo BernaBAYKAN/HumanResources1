@@ -17,7 +17,7 @@ public interface IUserMapper {
 
 
 
-    DetailInformationResponseDto toDetail(User user);
+   DetailInformationResponseDto detailTo(User user);
 
 
 

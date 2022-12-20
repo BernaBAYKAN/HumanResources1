@@ -7,7 +7,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import org.team3.dto.request.*;
-import org.team3.dto.response.CompanyManagerResponseDto;
 import org.team3.dto.response.DetailInformationResponseDto;
 import org.team3.dto.response.DoLoginResponseDto;
 import org.team3.exception.UserManagerException;
@@ -56,7 +55,7 @@ public class UserController {
     }
 
     @CrossOrigin(originPatterns = "*")
-    @PostMapping(UPDATE)
+    @PutMapping(UPDATE)
     public ResponseEntity<Boolean> updateProfile(@RequestBody @Valid EditProfileRequestDto editProfileRequestDto) {
 
         if (editProfileRequestDto.getToken() == null)
@@ -72,6 +71,7 @@ public class UserController {
     }
     @CrossOrigin(originPatterns = "*")
     @PostMapping("/newmanager")
+    //@PreAuthorize("hasAuthority(Role.ADMIN)")
     public ResponseEntity<Void> newCompanyManager(@RequestBody @Valid NewCompanyManagerDto dto) throws MessagingException, UnsupportedEncodingException {
         User user = userService.saveNewCompanyManager(dto);
         forgotPassword(user.getMail());
@@ -80,8 +80,7 @@ public class UserController {
 
     @CrossOrigin(originPatterns = "*")
     @PostMapping(PROFILE_DETAIL)
-    //@PreAuthorize("hasAuthority(Role.ADMIN)")
-    public ResponseEntity<DetailInformationResponseDto> profileDetail(DetailInformationRequestDto detailInformationRequestDto){
+    public ResponseEntity<DetailInformationResponseDto> profileDetail(@RequestBody DetailInformationRequestDto detailInformationRequestDto){
 
         DetailInformationResponseDto dto = userService.profileDetail(detailInformationRequestDto);
 
@@ -96,7 +95,7 @@ public class UserController {
         String response = userService.forgotPassword(email);
 
         if (!response.startsWith("Invalid")) {
-            response = "https://localhost:8081/api/reset-password?token=" + response  ;
+            response = "https://localhost:8081/v1/api/user/reset-password?token=" + response  ;
             //response="https://www.google.com.tr/";
             sendEmail(email, response);
         }

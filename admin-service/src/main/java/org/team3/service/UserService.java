@@ -68,8 +68,13 @@ public class UserService extends ServiceManager<User,Long> {
                         .department(optionalUser.get().getDepartment())
                         .birthdate(optionalUser.get().getBirthdate())
                         .workStartDate(optionalUser.get().getWorkStartDate())
-                        .phoneNumber(dto.getPhoneNumber())
                         .address(dto.getAddress())
+                        .phoneNumber(dto.getPhoneNumber())
+                        .password(optionalUser.get().getPassword())
+                        .token(optionalUser.get().getToken())
+                        .userRole(optionalUser.get().getUserRole())
+                        .tokenCreationDate(optionalUser.get().getTokenCreationDate())
+                        .companyManager(optionalUser.get().getCompanyManager())
                         .mail(optionalUser.get().getMail())
                         .build();
                 save(user);
@@ -89,7 +94,7 @@ public class UserService extends ServiceManager<User,Long> {
             Optional<Long> userId = jwtTokenManager.getUserId(detailInformationRequestDto.getToken());
             if(userId.isEmpty()) throw new UserManagerException(ErrorType.INVALID_TOKEN);
             User user = userRepository.findById(userId);
-            DetailInformationResponseDto dto = IUserMapper.INSTANCE.toDetail(user);
+            DetailInformationResponseDto dto = IUserMapper.INSTANCE.detailTo(user);
             return dto;
         }catch (Exception exception){
             throw new UserManagerException(ErrorType.INVALID_TOKEN);

@@ -1,8 +1,10 @@
 server:
   port: ${admin_port}
 
-spring:
+#server:
+#  port: 8081
 
+#spring:
 #  datasource:
 #    url: 'jdbc:postgresql://localhost:5432/HumanResources'
 #    username: 'postgres'
@@ -10,7 +12,7 @@ spring:
 #    driver-class-name: org.postgresql.Driver
 
 
-#spring:
+spring:
   datasource:
     url: ${db_postgresql_url}
     username: ${db_postgresql_username}

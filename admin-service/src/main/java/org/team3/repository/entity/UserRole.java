@@ -8,6 +8,7 @@ import org.hibernate.annotations.Cascade;
 import org.team3.repository.enums.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "user_role")
 @Entity
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Builder
-public class UserRole {
+public class UserRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

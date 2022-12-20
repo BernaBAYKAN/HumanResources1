@@ -1,7 +1,9 @@
 package org.team3.service;
 
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.team3.dto.request.NewCompanyRequestDto;
+import org.team3.dto.response.AllCompanyDtoResponse;
 import org.team3.mapper.ICompanyMapper;
 import org.team3.repository.ICompanyRepository;
 import org.team3.repository.entity.Company;
@@ -24,7 +26,6 @@ public class CompanyService extends ServiceManager<Company,Long> {
         List<Company> companyList = companyRepository.findAll();
 
         return companyList;
-
     }
 
     public void saveNewCompany(NewCompanyRequestDto dto) {
